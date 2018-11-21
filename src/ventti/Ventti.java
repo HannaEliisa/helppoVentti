@@ -59,7 +59,7 @@ public class Ventti {
                 hand += Integer.parseInt(findNum.group());
                 System.out.println("Kätesi arvo on nyt: " + hand);
             }
-            if (ventti.contains("Hertta") || ventti.contains("Ruutu")) { // this if is to get right color.
+            if (ventti.contains("Hertta") || ventti.contains("Ruutu")) { // this 'if' for us to get right color for some cards.
                 System.out.println(ANSI_RED + ventti);
             } else {
                 System.out.println(ventti); // black card
