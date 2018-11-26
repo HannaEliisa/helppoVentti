@@ -7,4 +7,5 @@ Parantaa haastajaa.
 Muutokset tiivistetysti:
 
 Päivä 2: Pelin voi voittaa tai hävitä.
+
 Päivä 1: Kursisharjoitus suorittaa itsensä loppuun onnistuneesti Hävisit tekstiin saakka.
