@@ -9,4 +9,4 @@ Muutokset tiivistetysti:
 
 Päivä 2: Pelin voi voittaa taikka hävitä.
 
-Päivä 1: Kursisharjoitus suorittaa itsensä loppuun onnistuneesti Hävisit tekstiin saakka.
+Päivä 1: Kurssiharjoitus suorittaa itsensä loppuun saakka onnistuneesti, hävisit tekstiin saakka.
