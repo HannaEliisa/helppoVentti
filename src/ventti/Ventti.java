@@ -123,7 +123,7 @@ public class Ventti {
 
             i++; //counter for next card.
         }
-        while (hostessHand < hostAmbition && hostessHand < hand && hand < 21) {
+        while (hostessHand < hostAmbition && hostessHand < hand && hand < 21 || hostessHand < hand && hand < 21) {
             i++;
             hostessDeck = (String) cardDeck.get(i);
             findNum = p.matcher(hostessDeck);
