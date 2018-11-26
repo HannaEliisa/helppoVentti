@@ -26,14 +26,22 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.regex.*;
 import java.util.*;
+
 /**
  *
  * @author s1801503
  */
 public class Ventti {
 
-    public static final String ANSI_BLUE = "\u001B[34m";
+
     public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_MAGENTA = "\u001B[35m";
+    public static final String SPADES_MARK = "\u2660";
+    public static final String HEARTS_MARK = "\u2665";
+    public static final String DIAMONDS_MARK = "\u2666";
+    public static final String CLUBS_MARK = "\u2663";
 
     /**
      * @param args the command line arguments
@@ -54,7 +62,7 @@ public class Ventti {
         int hostessHand = 0; //Comp player hand
         int hand = 0;
         int hostAmbition = new Random().nextInt(7) + 14;
-        System.out.println(hostAmbition);
+        System.out.println(SPADES_MARK);
         List cardDeck = new ArrayList(); // Array list where we place all cards in our current game.
 
         for (v = 2; v <= 14; v++) { //all fourteen cards. first card is number two.
@@ -76,14 +84,32 @@ public class Ventti {
             findNum = p.matcher(ventti); // we use this to parse numeralls to diffent variable called hand later.
             while (findNum.find()) {
                 hand += Integer.parseInt(findNum.group());
-                System.out.println("Kätesi arvo on nyt: " + hand);
+                System.out.println(ANSI_YELLOW+"Kätesi arvo on nyt: " + hand);
             }
-            if (ventti.contains("Hertta") || ventti.contains("Ruutu")) { // this 'if' for us to get right color for some cards.
-                System.out.println(ANSI_RED + ventti);
-            } else {
+            if (ventti.contains("Hertta")) { // this 'if' for us to get right color for some cards.
+                System.out.println(" _____");
+                System.out.println("|" + HEARTS_MARK + "    |");
+                System.out.println("|" + ANSI_RED + ventti);
+                System.out.println("|___" + HEARTS_MARK + "_|");
+            } else if (ventti.contains("Ruutu")) {
+                System.out.println(" _____");
+                System.out.println("|" + DIAMONDS_MARK + "    |");
+                System.out.println("|" + ANSI_RED + ventti);
+                System.out.println("|___" + DIAMONDS_MARK + "_|");
+            }else if (ventti.contains("Pata")) {
+                System.out.println(" _____");
+                System.out.println("|" + SPADES_MARK + "    |");
+                System.out.println("|" + ventti);
+                System.out.println("|___" + SPADES_MARK + "_|");
+            }else if (ventti.contains("Risti")) {
+                System.out.println(" _____");
+                System.out.println("|" + CLUBS_MARK + "    |");
+                System.out.println("|" + ventti);
+                System.out.println("|___" + CLUBS_MARK + "_|");
+            }  else {
                 System.out.println(ventti); // black card
             }
-            System.out.println("Nostatko lisää kortteja? || Paina enter nostaaksesi.");
+            System.out.println("\n"+ANSI_MAGENTA+"Nostatko lisää kortteja? \n|| Paina enter nostaaksesi.");
             input = ask.nextLine(); // user input and loop continues..
             if (hostessHand < hostAmbition) {
                 i++;
@@ -97,7 +123,7 @@ public class Ventti {
 
             i++; //counter for next card.
         }
-        while (hostessHand < hostAmbition) {
+        while (hostessHand < hostAmbition && hostessHand < hand && hand < 21) {
             i++;
             hostessDeck = (String) cardDeck.get(i);
             findNum = p.matcher(hostessDeck);
