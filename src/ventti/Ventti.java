@@ -51,6 +51,10 @@ public class Ventti {
         String[] continent = new String[]{"Pata", "Hertta", "Ruutu", "Risti"}; //Continents in array lang FI-fi
         String ventti;
         String input; //User input
+        String hostessDeck; //Comp player
+        int hostessHand = 0; //Comp player hand
+        int hand = 0;
+
         List cardDeck = new ArrayList(); // Array list where we place all cards in our current game.
 
         for (v = 2; v <= 14; v++) { //all fourteen cards. first card is number two.
@@ -60,16 +64,15 @@ public class Ventti {
             h = 0;
         }
         Collections.shuffle(cardDeck); //Will shuffle our array
-        int hand = 0;
         System.out.println(ANSI_BLUE + "Tervetuloa pelaamaan tekstiventtiä, painamalla enter saat kortin.");
         input = ask.nextLine();
         while ("".equals(input) == true) { // User input. Enter will deal card as it is empty.
-            if (hand>21){ // To Lose a game
+            if (hand > 21) { // To Lose a game
                 System.out.println("hävisit.");
-                input ="tappio";
+                input = "tappio";
                 continue;
             }
-            ventti = (String) cardDeck.get(i); // We will pull one card from our dect to table with list.get()
+            ventti = (String) cardDeck.get(i); // We will pull one card from our deck to table with list.get()
             findNum = p.matcher(ventti); // we use this to parse numeralls to diffent variable called hand later.
             while (findNum.find()) {
                 hand += Integer.parseInt(findNum.group());
@@ -80,15 +83,36 @@ public class Ventti {
             } else {
                 System.out.println(ventti); // black card
             }
+            System.out.println("Nostatko lisää kortteja? || Paina enter nostaaksesi.");
             input = ask.nextLine(); // user input and loop continues..
+            if (hostessHand < 17) {
+                i++;
+                hostessDeck = (String) cardDeck.get(i);
+                findNum = p.matcher(hostessDeck);
+                while (findNum.find()) {
+                    hostessHand += Integer.parseInt(findNum.group());
+                }
+                System.out.println("Emännän käden arvo on nyt: " + hostessHand);
+            }
+
             i++; //counter for next card.
         }
-        int card = 0; // 
-        //
-/* 
-        Emäntä puuttuu...
-         */
-
+        while (hostessHand < 17) {
+            i++;
+            hostessDeck = (String) cardDeck.get(i);
+            findNum = p.matcher(hostessDeck);
+            while (findNum.find()) {
+                hostessHand += Integer.parseInt(findNum.group());
+            }
+            System.out.println("Emännän käden arvo on nyt: " + hostessHand);
+        }
+        if (hostessHand > 21 && hand < 21 || hostessHand < hand && hand < 21) {
+            System.out.println("Voitit");
+        } else if (hostessHand == hand) {
+            System.out.println("Tasapeli.");
+        } else {
+            System.out.println("Emäntä vei pelin.");
+        }
     }
 
 }
