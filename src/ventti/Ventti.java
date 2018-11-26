@@ -26,7 +26,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.regex.*;
 import java.util.*;
-
 /**
  *
  * @author s1801503
@@ -54,7 +53,8 @@ public class Ventti {
         String hostessDeck; //Comp player
         int hostessHand = 0; //Comp player hand
         int hand = 0;
-
+        int hostAmbition = new Random().nextInt(7) + 14;
+        System.out.println(hostAmbition);
         List cardDeck = new ArrayList(); // Array list where we place all cards in our current game.
 
         for (v = 2; v <= 14; v++) { //all fourteen cards. first card is number two.
@@ -85,7 +85,7 @@ public class Ventti {
             }
             System.out.println("Nostatko lisää kortteja? || Paina enter nostaaksesi.");
             input = ask.nextLine(); // user input and loop continues..
-            if (hostessHand < 17) {
+            if (hostessHand < hostAmbition) {
                 i++;
                 hostessDeck = (String) cardDeck.get(i);
                 findNum = p.matcher(hostessDeck);
@@ -97,7 +97,7 @@ public class Ventti {
 
             i++; //counter for next card.
         }
-        while (hostessHand < 17) {
+        while (hostessHand < hostAmbition) {
             i++;
             hostessDeck = (String) cardDeck.get(i);
             findNum = p.matcher(hostessDeck);
