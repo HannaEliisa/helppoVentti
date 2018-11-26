@@ -1,5 +1,6 @@
 # helppoVentti
 Helppo ventti on koulussa tehtävä kurssiharjoitus. Se on lyhyt tekstipeli, jota toteutamme pienessä ryhmässä.
+
 Tavotteita:
 
 Parantaa haastajaa.
